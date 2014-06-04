@@ -3,7 +3,7 @@ package tv.inair.weather.modelview;
 import android.graphics.drawable.BitmapDrawable;
 
 import inair.data.ViewModel;
-import tv.inair.apptemplate.R;
+import tv.inair.weather.R;
 
 /**
  * Created by Synyster on 6/2/14.
@@ -21,7 +21,7 @@ public class ForecastItemViewModel extends ViewModel {
   private float textAlpha = 1.0f;
 
   public ForecastItemViewModel() {
-    dailyDay = "";
+    dailyDay = "Default";
     dailyDate = "";
     dailyCondition = "";
     dailyTempMax = "";

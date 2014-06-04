@@ -1,6 +1,6 @@
 package tv.inair.weather.util;
 
-import tv.inair.apptemplate.R;
+import tv.inair.weather.R;
 
 /**
  * Created by Synyster on 5/30/14.

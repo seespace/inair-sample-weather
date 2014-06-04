@@ -6,7 +6,7 @@ import android.view.Window;
 import inair.app.IABaseLayeredItem;
 import inair.app.IABaseLayout;
 import inair.event.EventHandler;
-import tv.inair.apptemplate.R;
+import tv.inair.weather.R;
 import tv.inair.weather.modelview.ForecastItemViewModel;
 import tv.inair.weather.modelview.WeatherViewModel;
 
@@ -24,6 +24,7 @@ public class WeatherLayout extends IABaseLayeredItem {
 
 
     for (ForecastItemViewModel itemViewModel : weatherViewModel.obsForecastItems) {
+      System.out.println("is here" + itemViewModel.getDailyDay());
       ForecastLayout forecastLayout = new ForecastLayout();
       forecastLayout.setDataContext(itemViewModel);
       addChildLayout(forecastLayout);
@@ -38,7 +39,6 @@ public class WeatherLayout extends IABaseLayeredItem {
       case inair.sdk.R.id.upBtn:
         break;
       case inair.sdk.R.id.enterBtn:
-//        Application.weatherViewModel.changeUnit();
         break;
       case inair.sdk.R.id.endBtn:
         break;

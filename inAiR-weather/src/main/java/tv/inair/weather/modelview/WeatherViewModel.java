@@ -25,7 +25,7 @@ import java.util.GregorianCalendar;
 
 import inair.collection.ObservableCollection;
 import inair.data.ViewModel;
-import tv.inair.apptemplate.R;
+import tv.inair.weather.R;
 import tv.inair.weather.Application;
 import tv.inair.weather.util.IconMapper;
 import tv.inair.weather.util.WeatherUtil;

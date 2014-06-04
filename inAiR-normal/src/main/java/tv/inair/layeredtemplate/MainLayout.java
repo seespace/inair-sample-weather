@@ -11,7 +11,7 @@ import java.util.Random;
 import inair.app.IABaseLayout;
 import inair.view.UIAnimation;
 import inair.view.UIImageView;
-import tv.inair.apptemplate.R;
+import tv.inair.weather.R;
 
 /**
  * Main layout of application

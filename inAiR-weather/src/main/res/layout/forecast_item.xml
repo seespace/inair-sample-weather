@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<UIViewGroup xmlns:ui="http://schemas.android.com/apk/res-auto"
+<UILayeredViewItem xmlns:ui="http://schemas.android.com/apk/res-auto"
     ui:positionX="{ Binding Path:'posX' }"
     ui:positionY="{ Binding Path:'posY' }"
     ui:positionZ="800.0" >
 
     <UITextView
+        ui:id="@+id/forecastId"
         ui:width="100.0"
         ui:height="10.0"
         ui:positionX="0.0"
@@ -41,4 +42,4 @@
         ui:positionY="50.0"
         ui:alpha="0.7"
         ui:text="{ Binding Path:'dailyTempMin' }" />
-</UIViewGroup>
+</UILayeredViewItem>

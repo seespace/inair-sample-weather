@@ -7,7 +7,7 @@ import android.text.Html;
 import java.util.Random;
 
 import inair.data.ViewModel;
-import tv.inair.apptemplate.R;
+import tv.inair.weather.R;
 
 /**
  * Implementation of view model

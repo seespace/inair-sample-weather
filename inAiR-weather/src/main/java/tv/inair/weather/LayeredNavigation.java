@@ -17,4 +17,22 @@ public class LayeredNavigation extends IALayeredNavigation {
       addLayer(weatherLayout);
     }
   }
+
+  @Override
+  public void processDebugKeyPress(int id) {
+    switch (id) {
+      case inair.sdk.R.id.downBtn:
+        break;
+      case inair.sdk.R.id.upBtn:
+        break;
+      case inair.sdk.R.id.enterBtn:
+        break;
+      case inair.sdk.R.id.endBtn:
+        break;
+      case inair.sdk.R.id.leftBtn:
+        break;
+      case inair.sdk.R.id.rightBtn:
+        break;
+    }
+  }
 }
