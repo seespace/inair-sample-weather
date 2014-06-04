@@ -1,0 +1,16 @@
+package tv.inair.weather;
+
+import android.os.Bundle;
+
+import inair.app.IAChildLayout;
+import tv.inair.apptemplate.R;
+
+/**
+ * Created by Synyster on 6/2/14.
+ */
+public class ForecastLayout extends IAChildLayout {
+  @Override
+  public void onInitialize(Bundle bundle) {
+    setRootContentView(R.layout.forecast_item);
+  }
+}
