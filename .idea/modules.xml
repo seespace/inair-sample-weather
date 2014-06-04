@@ -4,6 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/InAirWeather.iml" filepath="$PROJECT_DIR$/InAirWeather.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inAiR-layered/inAiR-layered.iml" filepath="$PROJECT_DIR$/inAiR-layered/inAiR-layered.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inAiR-normal/inAiR-normal.iml" filepath="$PROJECT_DIR$/inAiR-normal/inAiR-normal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inAiR-weather/inAiR-weather.iml" filepath="$PROJECT_DIR$/inAiR-weather/inAiR-weather.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inair-weather.iml" filepath="$PROJECT_DIR$/inair-weather.iml" />
     </modules>
   </component>
 </project>

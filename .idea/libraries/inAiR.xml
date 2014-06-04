@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="inAiR">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/exploded-aar/inAiR/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/build/exploded-aar/inAiR/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
