@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="volley">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/build/exploded-aar/lib-1.3.1/libs/volley.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
