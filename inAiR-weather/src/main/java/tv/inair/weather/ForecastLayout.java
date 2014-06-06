@@ -14,6 +14,5 @@ public class ForecastLayout extends IAChildLayout {
   public void onInitialize(Bundle bundle) {
     setRootContentView(R.layout.forecast_item);
     forecast = ((UITextView) findUIViewById(R.id.forecastId));
-    System.out.println("XXXXXXXXXX" + forecast);
   }
 }

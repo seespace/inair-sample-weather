@@ -12,7 +12,7 @@ public class MainViewModel extends ViewModel {
   private String[] cityId = {"5391959", "1581130", "1566083", "5128581", "5124925"};
 
   public MainViewModel() {
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < cityId.length; i++) {
       weatherViewModels.add(new WeatherViewModel(cityId[i]));
     }
   }

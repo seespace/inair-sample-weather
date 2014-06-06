@@ -5,14 +5,24 @@
     <eat-comment />
 
     <attr name="fontFamily" format="string" />
+    <attr name="textAlignment" format="enum|string">
+
+        <!-- Default -->
+        <!-- Align to the start of the paragraph, e.g. ALIGN_NORMAL. -->
+        <enum name="textStart" value="0" />
+        <!-- Align to the end of the paragraph, e.g. ALIGN_OPPOSITE. -->
+        <enum name="textEnd" value="1" />
+        <!-- Center the paragraph, e.g. ALIGN_CENTER. -->
+        <enum name="center" value="2" />
+    </attr>
     <attr name="textColor" format="color|string" />
     <attr name="textSize" format="float|string" />
-    <attr name="textStyle" format="enum|string">
+    <attr name="textStyle" format="enum">
         <enum name="normal" value="0" />
         <enum name="bold" value="1" />
         <enum name="italic" value="2" />
     </attr>
-    <attr name="typeface" format="enum|string">
+    <attr name="typeface" format="enum">
         <enum name="normal" value="0" />
         <enum name="sans" value="1" />
         <enum name="serif" value="2" />
@@ -38,10 +48,10 @@
     <declare-styleable name="UIImageView">
 
         <!-- Sets a drawable as the content of this ImageView. -->
-        <attr name="src" format="reference|color|string" />
+        <attr name="src" format="reference|string" />
 
-        <!-- &lt;!&ndash; Controls how the image should be resized or moved to match the size -->
-        <!-- of this ImageView. &ndash;&gt; -->
+        <!-- Controls how the image should be resized or moved to match the size -->
+        <!-- of this ImageView. -->
         <!-- <attr name="scaleType" format="enum|string"> -->
         <!-- <enum name="matrix" value="0"/> -->
         <!-- <enum name="fitXY" value="1"/> -->
@@ -57,9 +67,15 @@
         <!-- Set a tinting color for the image. -->
         <attr name="tint" format="color|string" />
     </declare-styleable>
+    <declare-styleable name="UILayeredNavigationView"></declare-styleable>
     <declare-styleable name="UILayeredViewItem">
         <attr name="title" format="string" />
     </declare-styleable>
+    <declare-styleable name="UIMenuView">
+        <attr name="itemWidth" format="float|string" />
+        <attr name="itemHeight" format="float|string" />
+    </declare-styleable>
+    <declare-styleable name="UIMenuViewItem"></declare-styleable>
     <declare-styleable name="UIRectView">
         <attr name="color" format="color|string" />
     </declare-styleable>
@@ -73,13 +89,14 @@
         <attr name="textSize" />
         <!-- Typeface (normal, sans, serif, monospace) for the text. -->
         <attr name="typeface" />
-        <!-- Style (bold, italic, bolditalic) for the text. -->
+        <!-- Style (bold, italic, bold italic) for the text. -->
         <attr name="textStyle" />
         <!-- Font family (named by string) for the text. -->
         <attr name="fontFamily" />
         <!-- Text color for links. -->
         <!-- <attr name="textColorLink" /> -->
 
+        <attr name="textAlignment" />
 
         <!-- Sets the horizontal scaling factor for the text. -->
         <!-- <attr name="textScaleX" format="float|string" /> -->

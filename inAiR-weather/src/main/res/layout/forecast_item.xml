@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<UILayeredViewItem xmlns:ui="http://schemas.android.com/apk/res-auto"
+<UIViewGroup xmlns:ui="http://schemas.android.com/apk/res-auto"
     ui:positionX="{ Binding Path:'posX' }"
     ui:positionY="{ Binding Path:'posY' }"
     ui:positionZ="800.0" >
@@ -42,4 +42,4 @@
         ui:positionY="50.0"
         ui:alpha="0.7"
         ui:text="{ Binding Path:'dailyTempMin' }" />
-</UILayeredViewItem>
+</UIViewGroup>

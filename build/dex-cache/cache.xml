@@ -2,17 +2,23 @@
 <pre-dex-items>
 
     <item
-        dex="/Users/Synyster/Projects/Androids/IAWeather/inAiR-layered/build/pre-dexed/debug/classes-88bb2c544d362f2cfc91f247222a22959bd02a76.jar"
-        jar="/Users/Synyster/Projects/Androids/IAWeather/build/exploded-aar/inAiR/classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="0f993e52a2a443528d24d3ca9e0999d1eca15ba3"/>
-    <item
         dex="/Users/Synyster/Projects/Androids/IAWeather/inAiR-weather/build/pre-dexed/debug/classes-99d91f8d232a4218ef3eb5a50abce49ae8bd5bfb.jar"
         jar="/Users/Synyster/Projects/Androids/IAWeather/build/exploded-aar/lib-1.3.1/classes.jar"
         jumboMode="false"
         revision="19.0.3"
         sha1="0fcab75793585073368b36a5ecf30cee839b0ec0"/>
+    <item
+        dex="/Users/Synyster/Projects/Androids/IAWeather/inAiR-layered/build/pre-dexed/debug/classes-88bb2c544d362f2cfc91f247222a22959bd02a76.jar"
+        jar="/Users/Synyster/Projects/Androids/IAWeather/build/exploded-aar/inAiR/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="8e43144c9f028c20f10ab30bbcb97153fbff6421"/>
+    <item
+        dex="/Users/Synyster/Projects/Androids/IAWeather/inAiR-twitter/build/pre-dexed/debug/twitter4j-core-4.0.1-67183e79a5658f713076b50182e73653638d6b2a.jar"
+        jar="/Users/Synyster/Projects/Androids/IAWeather/inAiR-twitter/libs/twitter4j-core-4.0.1.jar"
+        jumboMode="false"
+        revision="19.0.3"
+        sha1="34138fe734b03ae6e9ef978b41359b5fb6467047"/>
     <item
         dex="/Users/Synyster/Projects/Androids/IAWeather/inAiR-weather/build/pre-dexed/debug/volley-88420870c3ff3f4d3ecfa3d762b443b0cd17dfb0.jar"
         jar="/Users/Synyster/Projects/Androids/IAWeather/build/exploded-aar/lib-1.3.1/libs/volley.jar"
@@ -24,6 +30,6 @@
         jar="/Users/Synyster/Projects/Androids/IAWeather/build/exploded-aar/inAiR/classes.jar"
         jumboMode="false"
         revision="19.0.3"
-        sha1="a157e12868c56100fe483d7c0b21a1292bf4a47e"/>
+        sha1="28f5458b388fa6e549614c8ca20c4ba474fdaf61"/>
 
 </pre-dex-items>

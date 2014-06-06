@@ -4,7 +4,6 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.text.Html;
 import android.util.Log;
 
 import com.survivingwithandroid.weather.lib.WeatherClient;
@@ -25,8 +24,8 @@ import java.util.GregorianCalendar;
 
 import inair.collection.ObservableCollection;
 import inair.data.ViewModel;
-import tv.inair.weather.R;
 import tv.inair.weather.Application;
+import tv.inair.weather.R;
 import tv.inair.weather.util.IconMapper;
 import tv.inair.weather.util.WeatherUtil;
 
@@ -529,8 +528,8 @@ public class WeatherViewModel extends ViewModel {
         Date d = new Date();
         Calendar gc = new GregorianCalendar();
         gc.setTime(d);
-        float posX = 420.0f;
-        float posY = 400.0f;
+        float posX = 20.0f;
+        float posY = 270.0f;
         for (int i = 0; i < 6; i++) {
           DayForecast forecast = weatherForecast.getForecast(i);
           gc.add(GregorianCalendar.DAY_OF_MONTH, 1);

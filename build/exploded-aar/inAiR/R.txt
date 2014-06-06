@@ -1,22 +1,25 @@
-int attr alpha 0x7f01000b
-int attr borderColor 0x7f010012
-int attr borderThickness 0x7f010011
-int attr color 0x7f010008
+int attr alpha 0x7f01000e
+int attr borderColor 0x7f010015
+int attr borderThickness 0x7f010014
+int attr color 0x7f01000b
 int attr fontFamily 0x7f010000
-int attr height 0x7f01000d
-int attr id 0x7f01000a
-int attr positionX 0x7f01000e
-int attr positionY 0x7f01000f
-int attr positionZ 0x7f010010
-int attr src 0x7f010005
-int attr text 0x7f010009
-int attr textColor 0x7f010001
-int attr textSize 0x7f010002
-int attr textStyle 0x7f010003
-int attr tint 0x7f010006
-int attr title 0x7f010007
-int attr typeface 0x7f010004
-int attr width 0x7f01000c
+int attr height 0x7f010010
+int attr id 0x7f01000d
+int attr itemHeight 0x7f01000a
+int attr itemWidth 0x7f010009
+int attr positionX 0x7f010011
+int attr positionY 0x7f010012
+int attr positionZ 0x7f010013
+int attr src 0x7f010006
+int attr text 0x7f01000c
+int attr textAlignment 0x7f010001
+int attr textColor 0x7f010002
+int attr textSize 0x7f010003
+int attr textStyle 0x7f010004
+int attr tint 0x7f010007
+int attr title 0x7f010008
+int attr typeface 0x7f010005
+int attr width 0x7f01000f
 int color black 0x7f040000
 int color blue 0x7f040001
 int color cyan 0x7f040002
@@ -28,20 +31,23 @@ int color red 0x7f040007
 int color transparent 0x7f040008
 int color white 0x7f040009
 int color yellow 0x7f04000a
-int id bold 0x7f030001
-int id downBtn 0x7f030009
-int id endBtn 0x7f03000d
-int id enterBtn 0x7f03000b
-int id escBtn 0x7f030006
-int id homeBtn 0x7f03000c
-int id italic 0x7f030002
-int id leftBtn 0x7f030007
-int id monospace 0x7f030005
-int id normal 0x7f030000
-int id rightBtn 0x7f03000a
-int id sans 0x7f030003
-int id serif 0x7f030004
-int id upBtn 0x7f030008
+int id bold 0x7f030004
+int id center 0x7f030002
+int id downBtn 0x7f03000c
+int id endBtn 0x7f030010
+int id enterBtn 0x7f03000e
+int id escBtn 0x7f030009
+int id homeBtn 0x7f03000f
+int id italic 0x7f030005
+int id leftBtn 0x7f03000a
+int id monospace 0x7f030008
+int id normal 0x7f030003
+int id rightBtn 0x7f03000d
+int id sans 0x7f030006
+int id serif 0x7f030007
+int id textEnd 0x7f030001
+int id textStart 0x7f030000
+int id upBtn 0x7f03000b
 int integer default_door_close_height 0x7f050000
 int integer height_layer 0x7f050001
 int integer layer_moving_duration 0x7f050002
@@ -51,21 +57,27 @@ int integer y_navigator 0x7f050005
 int integer z_layer_distance 0x7f050006
 int integer z_navigator 0x7f050007
 int layout debug_layout 0x7f020000
-int[] styleable UIImageView { 0x7f010005, 0x7f010006 }
+int[] styleable UIImageView { 0x7f010006, 0x7f010007 }
 int styleable UIImageView_src 0
 int styleable UIImageView_tint 1
-int[] styleable UILayeredViewItem { 0x7f010007 }
+int[] styleable UILayeredNavigationView { }
+int[] styleable UILayeredViewItem { 0x7f010008 }
 int styleable UILayeredViewItem_title 0
-int[] styleable UIRectView { 0x7f010008 }
+int[] styleable UIMenuView { 0x7f010009, 0x7f01000a }
+int styleable UIMenuView_itemHeight 1
+int styleable UIMenuView_itemWidth 0
+int[] styleable UIMenuViewItem { }
+int[] styleable UIRectView { 0x7f01000b }
 int styleable UIRectView_color 0
-int[] styleable UITextView { 0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004, 0x7f010009 }
+int[] styleable UITextView { 0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005, 0x7f01000c }
 int styleable UITextView_fontFamily 0
-int styleable UITextView_text 5
-int styleable UITextView_textColor 1
-int styleable UITextView_textSize 2
-int styleable UITextView_textStyle 3
-int styleable UITextView_typeface 4
-int[] styleable UIView { 0x7f01000a, 0x7f01000b, 0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f, 0x7f010010, 0x7f010011, 0x7f010012 }
+int styleable UITextView_text 6
+int styleable UITextView_textAlignment 1
+int styleable UITextView_textColor 2
+int styleable UITextView_textSize 3
+int styleable UITextView_textStyle 4
+int styleable UITextView_typeface 5
+int[] styleable UIView { 0x7f01000d, 0x7f01000e, 0x7f01000f, 0x7f010010, 0x7f010011, 0x7f010012, 0x7f010013, 0x7f010014, 0x7f010015 }
 int styleable UIView_alpha 1
 int styleable UIView_borderColor 8
 int styleable UIView_borderThickness 7

@@ -1,9 +1,7 @@
 package tv.inair.weather;
 
 import inair.app.InAiRApplication;
-import tv.inair.weather.modelview.ForecastItemViewModel;
 import tv.inair.weather.modelview.MainViewModel;
-import tv.inair.weather.modelview.WeatherViewModel;
 
 /**
  * Application class of inAiR
@@ -21,6 +19,5 @@ public class Application extends InAiRApplication {
   protected void onInitialize(InAiRApplication application) {
     super.onInitialize(application);
     mainViewModel = new MainViewModel();
-
   }
 }
