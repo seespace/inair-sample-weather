@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/Synyster/Projects/Androids/IAWeather/inAiR-weather/build/pre-dexed/debug/volley-88420870c3ff3f4d3ecfa3d762b443b0cd17dfb0.jar"
+        jar="/Users/Synyster/Projects/Androids/IAWeather/build/exploded-aar/lib-1.3.1/libs/volley.jar"
+        jumboMode="false"
+        revision="19.0.3"
+        sha1="a1f3af2e93ae3a771572bdd2a610f5ee81a8d2b3"/>
+    <item
+        dex="/Users/Synyster/Projects/Androids/IAWeather/inAiR-weather/build/pre-dexed/debug/classes-99d91f8d232a4218ef3eb5a50abce49ae8bd5bfb.jar"
+        jar="/Users/Synyster/Projects/Androids/IAWeather/build/exploded-aar/lib-1.3.1/classes.jar"
+        jumboMode="false"
+        revision="19.0.3"
+        sha1="0fcab75793585073368b36a5ecf30cee839b0ec0"/>
+    <item
+        dex="/Users/Synyster/Projects/Androids/IAWeather/inAiR-weather/build/pre-dexed/debug/classes-88bb2c544d362f2cfc91f247222a22959bd02a76.jar"
+        jar="/Users/Synyster/Projects/Androids/IAWeather/build/exploded-aar/inAiR/classes.jar"
+        jumboMode="false"
+        revision="19.0.3"
+        sha1="a8daa5d890eff5ae3401ff4d4e175ad8b9e813f1"/>
+
+</pre-dex-items>
