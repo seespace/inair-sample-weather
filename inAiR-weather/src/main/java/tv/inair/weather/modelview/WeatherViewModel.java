@@ -1,7 +1,5 @@
 package tv.inair.weather.modelview;
 
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -35,8 +33,7 @@ import tv.inair.weather.util.WeatherUtil;
 public class WeatherViewModel extends ViewModel {
 
 
-  public ObservableCollection<ForecastItemViewModel> obsForecastItems = new ObservableCollection<>();
-  Resources res;
+  public ObservableCollection<ForecastItemViewModel> obsForecastItems = new ObservableCollection<ForecastItemViewModel>();
   private String layerTitle = "";
   private WeatherClient client;
   private WeatherConfig config;
