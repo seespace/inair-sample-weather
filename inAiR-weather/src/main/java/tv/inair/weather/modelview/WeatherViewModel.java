@@ -1,10 +1,7 @@
 package tv.inair.weather.modelview;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.survivingwithandroid.weather.lib.WeatherClient;
@@ -319,100 +316,85 @@ public class WeatherViewModel extends ViewModel {
   }
 
   public void refresh() {
-    GetWeather getCurrent = new GetWeather();
-    getCurrent.execute();
-  }
-
-  private class GetWeather extends AsyncTask<Void, Void, Void> {
-
-    @Override
-    protected void onPreExecute() {
-      super.onPreExecute();
-    }
-
-    @Override
-    protected Void doInBackground(Void... params) {
-      client.getCurrentCondition(cityId, new WeatherClient.WeatherEventListener() {
-        @Override
-        public void onWeatherRetrieved(CurrentWeather currentWeather) {
-          setLayerTitle(currentWeather.location.getCity() + ", " + currentWeather.location.getCountry());
-          setCondition(currentWeather.currentCondition.getCondition() + "(" + currentWeather.currentCondition.getDescr() + ")");
-          setTemp("" + (int) currentWeather.temperature.getTemp());
-          setTempUnit(currentWeather.getUnit().tempUnit);
-          if (currentWeather.temperature.getTemp() < 10) {
-            setTempSize(100.0f);
-            setTempUnitX(50.0f);
-            setTempMaxX(65.0f);
-          } else if (currentWeather.temperature.getTemp() > 10 ) {
-            setTempSize(100.0f);
-            setTempUnitX(105.0f);
-            setTempMaxX(120.0f);
-            if (currentWeather.temperature.getTemp() >= 100) {
-              setTempSize(90.0f);
-            }
-          }
-          setTempMax("" + currentWeather.temperature.getMaxTemp());
-          setTempMin("" + currentWeather.temperature.getMinTemp());
-          setWindSpeed(currentWeather.wind.getSpeed() + currentWeather.getUnit().speedUnit + " " + (int) currentWeather.wind.getDeg() + "°");
-          setCurrentImageWidth(100.0f);
-          setCurrentImageHeight(100.0f);
-          setCurrentImageSrc((BitmapDrawable) resources.getDrawable(IconMapper.getWeatherResource(currentWeather.currentCondition.getIcon(), currentWeather.currentCondition.getWeatherId())));
-          setHumidity(currentWeather.currentCondition.getHumidity() + "%");
-          setSunrise(WeatherUtil.convertDate(currentWeather.location.getSunrise()));
-          setSunset(WeatherUtil.convertDate(currentWeather.location.getSunset()));
-          setCloud(currentWeather.clouds.getPerc() + "%");
-          if (currentWeather.rain.getTime() != null && currentWeather.rain.getAmmount() != 0) {
-            setRain(currentWeather.rain.getTime() + ":" + currentWeather.rain.getAmmount());
-          } else
-            setRain("-----");
-        }
-
-        @Override
-        public void onWeatherError(WeatherLibException e) {
-        }
-
-        @Override
-        public void onConnectionError(Throwable throwable) {
-        }
-      });
-      client.getForecastWeather(cityId, new WeatherClient.ForecastWeatherEventListener() {
-        @Override
-        public void onWeatherRetrieved(WeatherForecast weatherForecast) {
-          SimpleDateFormat sdfDay = new SimpleDateFormat("EEEE");
-          SimpleDateFormat sdfMonth = new SimpleDateFormat("MMM, dd");
-          Date d = new Date();
-          Calendar gc = new GregorianCalendar();
-          gc.setTime(d);
-          float posX = 20.0f;
-          float posY = 270.0f;
-          for (int i = 0; i < 6; i++) {
-            DayForecast forecast = weatherForecast.getForecast(i);
-            gc.add(GregorianCalendar.DAY_OF_MONTH, 1);
-            obsForecastItems.get(i).setPosX(posX);
-            posY += 40.0f;
-            obsForecastItems.get(i).setPosY(posY);
-            obsForecastItems.get(i).setDailyDay(sdfDay.format(gc.getTime()));
-            obsForecastItems.get(i).setDailyDate(sdfMonth.format(gc.getTime()));
-            obsForecastItems.get(i).setDailyImageSrc((BitmapDrawable) resources.getDrawable(IconMapper.getWeatherResource(forecast.weather.currentCondition.getIcon(), forecast.weather.currentCondition.getWeatherId())));
-            obsForecastItems.get(i).setDailyCondition(forecast.weather.currentCondition.getDescr());
-            obsForecastItems.get(i).setDailyTempMax("" + (int) forecast.forecastTemp.max + "°");
-            obsForecastItems.get(i).setDailyTempMin("" + (int) forecast.forecastTemp.min + "°");
+    // Get Current Condition
+    client.getCurrentCondition(cityId, new WeatherClient.WeatherEventListener() {
+      @Override
+      public void onWeatherRetrieved(CurrentWeather currentWeather) {
+        setLayerTitle(currentWeather.location.getCity() + ", " + currentWeather.location.getCountry());
+        setCondition(currentWeather.currentCondition.getCondition() + "(" + currentWeather.currentCondition.getDescr() + ")");
+        setTemp("" + (int) currentWeather.temperature.getTemp());
+        setTempUnit(currentWeather.getUnit().tempUnit);
+        if (currentWeather.temperature.getTemp() < 10) {
+          setTempSize(100.0f);
+          setTempUnitX(50.0f);
+          setTempMaxX(65.0f);
+        } else if (currentWeather.temperature.getTemp() > 10 ) {
+          setTempSize(100.0f);
+          setTempUnitX(105.0f);
+          setTempMaxX(120.0f);
+          if (currentWeather.temperature.getTemp() >= 100) {
+            setTempSize(90.0f);
           }
         }
+        setTempMax("" + currentWeather.temperature.getMaxTemp());
+        setTempMin("" + currentWeather.temperature.getMinTemp());
+        setWindSpeed(currentWeather.wind.getSpeed() + currentWeather.getUnit().speedUnit + " " + (int) currentWeather.wind.getDeg() + "°");
+        setCurrentImageWidth(100.0f);
+        setCurrentImageHeight(100.0f);
+        setCurrentImageSrc((BitmapDrawable) resources.getDrawable(IconMapper.getWeatherResource(currentWeather.currentCondition.getIcon(), currentWeather.currentCondition.getWeatherId())));
+        setHumidity(currentWeather.currentCondition.getHumidity() + "%");
+        setSunrise(WeatherUtil.convertDate(currentWeather.location.getSunrise()));
+        setSunset(WeatherUtil.convertDate(currentWeather.location.getSunset()));
+        setCloud(currentWeather.clouds.getPerc() + "%");
+        if (currentWeather.rain.getTime() != null && currentWeather.rain.getAmmount() != 0) {
+          setRain(currentWeather.rain.getTime() + ":" + currentWeather.rain.getAmmount());
+        } else
+          setRain("-----");
+      }
 
-        @Override
-        public void onWeatherError(WeatherLibException e) {
-        }
+      @Override
+      public void onWeatherError(WeatherLibException e) {
+      }
 
-        @Override
-        public void onConnectionError(Throwable throwable) {
+      @Override
+      public void onConnectionError(Throwable throwable) {
+      }
+    });
+
+    // Get forecast weather for the next days
+    client.getForecastWeather(cityId, new WeatherClient.ForecastWeatherEventListener() {
+      @Override
+      public void onWeatherRetrieved(WeatherForecast weatherForecast) {
+        SimpleDateFormat sdfDay = new SimpleDateFormat("EEEE");
+        SimpleDateFormat sdfMonth = new SimpleDateFormat("MMM, dd");
+        Date d = new Date();
+        Calendar gc = new GregorianCalendar();
+        gc.setTime(d);
+        float posX = 20.0f;
+        float posY = 270.0f;
+        for (int i = 0; i < 6; i++) {
+          DayForecast forecast = weatherForecast.getForecast(i);
+          gc.add(GregorianCalendar.DAY_OF_MONTH, 1);
+          obsForecastItems.get(i).setPosX(posX);
+          posY += 40.0f;
+          obsForecastItems.get(i).setPosY(posY);
+          obsForecastItems.get(i).setDailyDay(sdfDay.format(gc.getTime()));
+          obsForecastItems.get(i).setDailyDate(sdfMonth.format(gc.getTime()));
+          obsForecastItems.get(i).setDailyImageSrc((BitmapDrawable) resources.getDrawable(IconMapper.getWeatherResource(forecast.weather.currentCondition.getIcon(), forecast.weather.currentCondition.getWeatherId())));
+          obsForecastItems.get(i).setDailyCondition(forecast.weather.currentCondition.getDescr());
+          obsForecastItems.get(i).setDailyTempMax("" + (int) forecast.forecastTemp.max + "°");
+          obsForecastItems.get(i).setDailyTempMin("" + (int) forecast.forecastTemp.min + "°");
         }
-      });
-      return null;
-    }
-    @Override
-    protected void onPostExecute(Void unused) {
-      super.onPostExecute(unused);
-    }
+      }
+
+      @Override
+      public void onWeatherError(WeatherLibException e) {
+      }
+
+      @Override
+      public void onConnectionError(Throwable throwable) {
+      }
+    });
   }
+
 }
