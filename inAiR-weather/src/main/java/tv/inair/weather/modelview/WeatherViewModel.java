@@ -1,7 +1,10 @@
 package tv.inair.weather.modelview;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.survivingwithandroid.weather.lib.WeatherClient;
@@ -255,131 +258,6 @@ public class WeatherViewModel extends ViewModel {
     notifyPropertyChanged("rain");
   }
 
-//  public float getTextAlpha() {
-//    return textAlpha;
-//  }
-//
-//  public void setTextAlpha(float textAlpha) {
-//    this.textAlpha = textAlpha;
-//    notifyPropertyChanged("textAlpha");
-//  }
-//
-//  public float getTextWidth() {
-//    return textWidth;
-//  }
-//
-//  public void setTextWidth(float textWidth) {
-//    this.textWidth = textWidth;
-//    notifyPropertyChanged("textWidth");
-//  }
-//
-//  public float getTextHeight() {
-//    return textHeight;
-//  }
-//
-//  public void setTextHeight(float textHeight) {
-//    this.textHeight = textHeight;
-//    notifyPropertyChanged("textHeight");
-//  }
-//
-//  public int getTextColor() {
-//    return textColor;
-//  }
-//
-//  public void setTextColor(int textColor) {
-//    this.textColor = textColor;
-//    notifyPropertyChanged("textColor");
-//  }
-//
-//  public float getTextSize() {
-//    return textSize;
-//  }
-//
-//  public void setTextSize(float textSize) {
-//    this.textSize = textSize;
-//    notifyPropertyChanged("textSize");
-//  }
-//  public float getTextPositionX() {
-//    return textPositionX;
-//  }
-//
-//  public void setTextPositionX(float textPositionX) {
-//    this.textPositionX = textPositionX;
-//    notifyPropertyChanged("textPositionX");
-//  }
-//
-//  public float getTextPositionY() {
-//    return textPositionY;
-//  }
-//
-//  public void setTextPositionY(float textPositionY) {
-//    this.textPositionY = textPositionY;
-//    notifyPropertyChanged("textPositionY");
-//  }
-//
-//  public float getTextPositionZ() {
-//    return textPositionZ;
-//  }
-//
-//  public void setTextPositionZ(float textPositionZ) {
-//    this.textPositionZ = textPositionZ;
-//    notifyPropertyChanged("textPositionZ");
-//  }
-//
-//  public float getImageAlpha() {
-//    return imageAlpha;
-//  }
-//
-//  public void setImageAlpha(float imageAlpha) {
-//    this.imageAlpha = imageAlpha;
-//    notifyPropertyChanged("imageAlpha");
-//  }
-//
-//  public float getImageWidth() {
-//    return imageWidth;
-//  }
-//
-//  public void setImageWidth(float imageWidth) {
-//    this.imageWidth = imageWidth;
-//    notifyPropertyChanged("imageWidth");
-//  }
-//
-//  public float getImageHeight() {
-//    return imageHeight;
-//  }
-//
-//  public void setImageHeight(float imageHeight) {
-//    this.imageHeight = imageHeight;
-//    notifyPropertyChanged("imageHeight");
-//  }
-//
-//  public float getImagePositionX() {
-//    return imagePositionX;
-//  }
-//
-//  public void setImagePositionX(float imagePositionX) {
-//    this.imagePositionX = imagePositionX;
-//    notifyPropertyChanged("imagePositionX");
-//  }
-//
-//  public float getImagePositionY() {
-//    return imagePositionY;
-//  }
-//
-//  public void setImagePositionY(float imagePositionY) {
-//    this.imagePositionY = imagePositionY;
-//    notifyPropertyChanged("imagePositionY");
-//  }
-//
-//  public float getImagePositionZ() {
-//    return imagePositionZ;
-//  }
-//
-//  public void setImagePositionZ(float imagePositionZ) {
-//    this.imagePositionZ = imagePositionZ;
-//    notifyPropertyChanged("imagePositionZ");
-//  }
-
   public Drawable getImageSrc() {
     return imageSrc;
   }
@@ -441,84 +319,100 @@ public class WeatherViewModel extends ViewModel {
   }
 
   public void refresh() {
-    // Get Current Condition
-    client.getCurrentCondition(cityId, new WeatherClient.WeatherEventListener() {
-      @Override
-      public void onWeatherRetrieved(CurrentWeather currentWeather) {
-        setLayerTitle(currentWeather.location.getCity() + ", " + currentWeather.location.getCountry());
-        setCondition(currentWeather.currentCondition.getCondition() + "(" + currentWeather.currentCondition.getDescr() + ")");
-        setTemp("" + (int) currentWeather.temperature.getTemp());
-        setTempUnit(currentWeather.getUnit().tempUnit);
-        if (currentWeather.temperature.getTemp() < 10) {
-          setTempSize(100.0f);
-          setTempUnitX(50.0f);
-          setTempMaxX(65.0f);
-        } else if (currentWeather.temperature.getTemp() > 10 ) {
-          setTempSize(100.0f);
-          setTempUnitX(105.0f);
-          setTempMaxX(120.0f);
-          if (currentWeather.temperature.getTemp() >= 100) {
-            setTempSize(90.0f);
+    GetWeather getCurrent = new GetWeather();
+    getCurrent.execute();
+  }
+
+  private class GetWeather extends AsyncTask<Void, Void, Void> {
+
+    @Override
+    protected void onPreExecute() {
+      super.onPreExecute();
+    }
+
+    @Override
+    protected Void doInBackground(Void... params) {
+      client.getCurrentCondition(cityId, new WeatherClient.WeatherEventListener() {
+        @Override
+        public void onWeatherRetrieved(CurrentWeather currentWeather) {
+          setLayerTitle(currentWeather.location.getCity() + ", " + currentWeather.location.getCountry());
+          setCondition(currentWeather.currentCondition.getCondition() + "(" + currentWeather.currentCondition.getDescr() + ")");
+          setTemp("" + (int) currentWeather.temperature.getTemp());
+          setTempUnit(currentWeather.getUnit().tempUnit);
+          if (currentWeather.temperature.getTemp() < 10) {
+            setTempSize(100.0f);
+            setTempUnitX(50.0f);
+            setTempMaxX(65.0f);
+          } else if (currentWeather.temperature.getTemp() > 10 ) {
+            setTempSize(100.0f);
+            setTempUnitX(105.0f);
+            setTempMaxX(120.0f);
+            if (currentWeather.temperature.getTemp() >= 100) {
+              setTempSize(90.0f);
+            }
+          }
+          setTempMax("" + currentWeather.temperature.getMaxTemp());
+          setTempMin("" + currentWeather.temperature.getMinTemp());
+          setWindSpeed(currentWeather.wind.getSpeed() + currentWeather.getUnit().speedUnit + " " + (int) currentWeather.wind.getDeg() + "°");
+          setCurrentImageWidth(100.0f);
+          setCurrentImageHeight(100.0f);
+          setCurrentImageSrc((BitmapDrawable) resources.getDrawable(IconMapper.getWeatherResource(currentWeather.currentCondition.getIcon(), currentWeather.currentCondition.getWeatherId())));
+          setHumidity(currentWeather.currentCondition.getHumidity() + "%");
+          setSunrise(WeatherUtil.convertDate(currentWeather.location.getSunrise()));
+          setSunset(WeatherUtil.convertDate(currentWeather.location.getSunset()));
+          setCloud(currentWeather.clouds.getPerc() + "%");
+          if (currentWeather.rain.getTime() != null && currentWeather.rain.getAmmount() != 0) {
+            setRain(currentWeather.rain.getTime() + ":" + currentWeather.rain.getAmmount());
+          } else
+            setRain("-----");
+        }
+
+        @Override
+        public void onWeatherError(WeatherLibException e) {
+        }
+
+        @Override
+        public void onConnectionError(Throwable throwable) {
+        }
+      });
+      client.getForecastWeather(cityId, new WeatherClient.ForecastWeatherEventListener() {
+        @Override
+        public void onWeatherRetrieved(WeatherForecast weatherForecast) {
+          SimpleDateFormat sdfDay = new SimpleDateFormat("EEEE");
+          SimpleDateFormat sdfMonth = new SimpleDateFormat("MMM, dd");
+          Date d = new Date();
+          Calendar gc = new GregorianCalendar();
+          gc.setTime(d);
+          float posX = 20.0f;
+          float posY = 270.0f;
+          for (int i = 0; i < 6; i++) {
+            DayForecast forecast = weatherForecast.getForecast(i);
+            gc.add(GregorianCalendar.DAY_OF_MONTH, 1);
+            obsForecastItems.get(i).setPosX(posX);
+            posY += 40.0f;
+            obsForecastItems.get(i).setPosY(posY);
+            obsForecastItems.get(i).setDailyDay(sdfDay.format(gc.getTime()));
+            obsForecastItems.get(i).setDailyDate(sdfMonth.format(gc.getTime()));
+            obsForecastItems.get(i).setDailyImageSrc((BitmapDrawable) resources.getDrawable(IconMapper.getWeatherResource(forecast.weather.currentCondition.getIcon(), forecast.weather.currentCondition.getWeatherId())));
+            obsForecastItems.get(i).setDailyCondition(forecast.weather.currentCondition.getDescr());
+            obsForecastItems.get(i).setDailyTempMax("" + (int) forecast.forecastTemp.max + "°");
+            obsForecastItems.get(i).setDailyTempMin("" + (int) forecast.forecastTemp.min + "°");
           }
         }
-        setTempMax("" + currentWeather.temperature.getMaxTemp());
-        setTempMin("" + currentWeather.temperature.getMinTemp());
-        setWindSpeed(currentWeather.wind.getSpeed() + currentWeather.getUnit().speedUnit + " " + (int) currentWeather.wind.getDeg() + "°");
-        setCurrentImageWidth(100.0f);
-        setCurrentImageHeight(100.0f);
-        setCurrentImageSrc((BitmapDrawable) resources.getDrawable(IconMapper.getWeatherResource(currentWeather.currentCondition.getIcon(), currentWeather.currentCondition.getWeatherId())));
-        setHumidity(currentWeather.currentCondition.getHumidity() + "%");
-        setSunrise(WeatherUtil.convertDate(currentWeather.location.getSunrise()));
-        setSunset(WeatherUtil.convertDate(currentWeather.location.getSunset()));
-        setCloud(currentWeather.clouds.getPerc() + "%");
-        if (currentWeather.rain.getTime() != null && currentWeather.rain.getAmmount() != 0) {
-          setRain(currentWeather.rain.getTime() + ":" + currentWeather.rain.getAmmount());
-        } else
-          setRain("-----");
-      }
 
-      @Override
-      public void onWeatherError(WeatherLibException e) {
-      }
-
-      @Override
-      public void onConnectionError(Throwable throwable) {
-      }
-    });
-
-    // Get forecast weather for the next days
-    client.getForecastWeather(cityId, new WeatherClient.ForecastWeatherEventListener() {
-      @Override
-      public void onWeatherRetrieved(WeatherForecast weatherForecast) {
-        SimpleDateFormat sdfDay = new SimpleDateFormat("EEEE");
-        SimpleDateFormat sdfMonth = new SimpleDateFormat("MMM, dd");
-        Date d = new Date();
-        Calendar gc = new GregorianCalendar();
-        gc.setTime(d);
-        float posX = 20.0f;
-        float posY = 270.0f;
-        for (int i = 0; i < 6; i++) {
-          DayForecast forecast = weatherForecast.getForecast(i);
-          gc.add(GregorianCalendar.DAY_OF_MONTH, 1);
-          obsForecastItems.get(i).setPosX(posX);
-          posY += 40.0f;
-          obsForecastItems.get(i).setPosY(posY);
-          obsForecastItems.get(i).setDailyDay(sdfDay.format(gc.getTime()));
-          obsForecastItems.get(i).setDailyDate(sdfMonth.format(gc.getTime()));
-          obsForecastItems.get(i).setDailyImageSrc((BitmapDrawable) resources.getDrawable(IconMapper.getWeatherResource(forecast.weather.currentCondition.getIcon(), forecast.weather.currentCondition.getWeatherId())));
-          obsForecastItems.get(i).setDailyCondition(forecast.weather.currentCondition.getDescr());
-          obsForecastItems.get(i).setDailyTempMax("" + (int) forecast.forecastTemp.max + "°");
-          obsForecastItems.get(i).setDailyTempMin("" + (int) forecast.forecastTemp.min + "°");
+        @Override
+        public void onWeatherError(WeatherLibException e) {
         }
-      }
 
-      @Override
-      public void onWeatherError(WeatherLibException e) {
-      }
-
-      @Override
-      public void onConnectionError(Throwable throwable) {
-      }
-    });
+        @Override
+        public void onConnectionError(Throwable throwable) {
+        }
+      });
+      return null;
+    }
+    @Override
+    protected void onPostExecute(Void unused) {
+      super.onPostExecute(unused);
+    }
   }
 }
