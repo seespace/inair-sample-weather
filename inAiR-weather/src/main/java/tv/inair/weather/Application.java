@@ -16,8 +16,8 @@ public class Application extends InAiRApplication {
   public static MainViewModel mainViewModel;
 
   @Override
-  protected void onInitialize(InAiRApplication application) {
-    super.onInitialize(application);
+  protected void onInitialize() {
+    super.onInitialize();
     mainViewModel = new MainViewModel();
   }
 }

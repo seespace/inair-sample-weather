@@ -7,7 +7,7 @@ import inair.data.ViewModel;
  * Created by Synyster on 6/3/14.
  */
 public class MainViewModel extends ViewModel {
-  public ObservableCollection<WeatherViewModel> weatherViewModels = new ObservableCollection<>();
+  public ObservableCollection<WeatherViewModel> weatherViewModels = new ObservableCollection<WeatherViewModel>();
 
   private String[] cityId = {"5391959", "1581130", "1566083", "5128581", "5124925"};
 

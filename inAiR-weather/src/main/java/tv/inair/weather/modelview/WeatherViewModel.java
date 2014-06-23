@@ -1,7 +1,5 @@
 package tv.inair.weather.modelview;
 
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -35,8 +33,7 @@ import tv.inair.weather.util.WeatherUtil;
 public class WeatherViewModel extends ViewModel {
 
 
-  public ObservableCollection<ForecastItemViewModel> obsForecastItems = new ObservableCollection<>();
-  Resources res;
+  public ObservableCollection<ForecastItemViewModel> obsForecastItems = new ObservableCollection<ForecastItemViewModel>();
   private String layerTitle = "";
   private WeatherClient client;
   private WeatherConfig config;
@@ -60,46 +57,15 @@ public class WeatherViewModel extends ViewModel {
   private String sunrise = "";
   private String cloud = "";
   private String rain = "";
-  private String pressure = "";
-  //region Alpha
-  private float textAlpha = 1.0f;
-  //region Size
-  private float textWidth = 500.0f;
-  private float textHeight = 100.0f;
-  //region Color
-  private int textColor = Color.WHITE;
-  //region TextContent
-  //region TextSize
-  private float textSize = 25.0f;
-  //region Position
-  private float textPositionX = 100.0f;
-  private float textPositionY = 100.0f;
-  private float textPositionZ = 100.0f;
-  //region IMAGE PROPERTIES
-  //region Alpha
-  private float imageAlpha = 0.2f;
-  //region Size
-  private float imageWidth = 100.0f;
-  private float imageHeight = 100.0f;
-  //region Position
-  private float imagePositionX = 100.0f;
-  private float imagePositionY = 100.0f;
-  private float imagePositionZ = 100.0f;
-  //region Source
   private Drawable imageSrc = null;
   private BitmapDrawable currentImageSrc;
 
   // Constructor
   public WeatherViewModel(String cityId) {
     this.cityId = cityId;
-
     currentImageSrc = (BitmapDrawable) resources.getDrawable(R.drawable.sun);
 
-    for (int i = 0; i < 6; i++) {
-      obsForecastItems.add(new ForecastItemViewModel());
-    }
-
-    // Config wClient & wConfig
+    // Config weather client & weather config
     client = WeatherClientDefault.getInstance();
     client.init(Application.getAppContext());
 
@@ -108,6 +74,10 @@ public class WeatherViewModel extends ViewModel {
     config.lang = "en";
     config.maxResult = 5;
     config.numDays = 6;
+
+    for (int i = 0; i < config.numDays; i++) {
+      obsForecastItems.add(new ForecastItemViewModel());
+    }
 
     try {
       IWeatherProvider provider = WeatherProviderFactory.createProvider(new OpenweathermapProviderType(), config);
@@ -134,10 +104,6 @@ public class WeatherViewModel extends ViewModel {
   public void setTempSize(float tempSize) {
     this.tempSize = tempSize;
     notifyPropertyChanged("tempSize");
-  }
-
-  private WeatherConfig.UNIT_SYSTEM getUnitSystem() {
-    return tempUnit.substring(1, 2).equals("F") ? WeatherConfig.UNIT_SYSTEM.M : WeatherConfig.UNIT_SYSTEM.I;
   }
 
   public BitmapDrawable getCurrentImageSrc() {
@@ -215,7 +181,6 @@ public class WeatherViewModel extends ViewModel {
   public String getUnitTemp() {
     return unitTemp;
   }
-  //endregion
 
   public void setUnitTemp(String unitTemp) {
     this.unitTemp = unitTemp;
@@ -243,7 +208,6 @@ public class WeatherViewModel extends ViewModel {
   public String getSunset() {
     return sunset;
   }
-  //endregion
 
   public void setSunset(String sunset) {
     this.sunset = sunset;
@@ -258,7 +222,6 @@ public class WeatherViewModel extends ViewModel {
     this.sunrise = sunrise;
     notifyPropertyChanged("sunrise");
   }
-  //endregion
 
   public String getCloud() {
     return cloud;
@@ -276,140 +239,6 @@ public class WeatherViewModel extends ViewModel {
   public void setRain(String rain) {
     this.rain = rain;
     notifyPropertyChanged("rain");
-  }
-
-  public String getPressure() {
-    return pressure;
-  }
-
-  public void setPressure(String pressure) {
-    this.pressure = pressure;
-    notifyPropertyChanged("pressure");
-  }
-
-  public float getTextAlpha() {
-    return textAlpha;
-  }
-
-  public void setTextAlpha(float textAlpha) {
-    this.textAlpha = textAlpha;
-    notifyPropertyChanged("textAlpha");
-  }
-
-  public float getTextWidth() {
-    return textWidth;
-  }
-
-  public void setTextWidth(float textWidth) {
-    this.textWidth = textWidth;
-    notifyPropertyChanged("textWidth");
-  }
-
-  public float getTextHeight() {
-    return textHeight;
-  }
-
-  public void setTextHeight(float textHeight) {
-    this.textHeight = textHeight;
-    notifyPropertyChanged("textHeight");
-  }
-
-  public int getTextColor() {
-    return textColor;
-  }
-
-  public void setTextColor(int textColor) {
-    this.textColor = textColor;
-    notifyPropertyChanged("textColor");
-  }
-
-  public float getTextSize() {
-    return textSize;
-  }
-
-  public void setTextSize(float textSize) {
-    this.textSize = textSize;
-    notifyPropertyChanged("textSize");
-  }
-  public float getTextPositionX() {
-    return textPositionX;
-  }
-
-  public void setTextPositionX(float textPositionX) {
-    this.textPositionX = textPositionX;
-    notifyPropertyChanged("textPositionX");
-  }
-
-  public float getTextPositionY() {
-    return textPositionY;
-  }
-
-  public void setTextPositionY(float textPositionY) {
-    this.textPositionY = textPositionY;
-    notifyPropertyChanged("textPositionY");
-  }
-
-  public float getTextPositionZ() {
-    return textPositionZ;
-  }
-
-  public void setTextPositionZ(float textPositionZ) {
-    this.textPositionZ = textPositionZ;
-    notifyPropertyChanged("textPositionZ");
-  }
-
-  public float getImageAlpha() {
-    return imageAlpha;
-  }
-
-  public void setImageAlpha(float imageAlpha) {
-    this.imageAlpha = imageAlpha;
-    notifyPropertyChanged("imageAlpha");
-  }
-
-  public float getImageWidth() {
-    return imageWidth;
-  }
-
-  public void setImageWidth(float imageWidth) {
-    this.imageWidth = imageWidth;
-    notifyPropertyChanged("imageWidth");
-  }
-
-  public float getImageHeight() {
-    return imageHeight;
-  }
-
-  public void setImageHeight(float imageHeight) {
-    this.imageHeight = imageHeight;
-    notifyPropertyChanged("imageHeight");
-  }
-
-  public float getImagePositionX() {
-    return imagePositionX;
-  }
-
-  public void setImagePositionX(float imagePositionX) {
-    this.imagePositionX = imagePositionX;
-    notifyPropertyChanged("imagePositionX");
-  }
-
-  public float getImagePositionY() {
-    return imagePositionY;
-  }
-
-  public void setImagePositionY(float imagePositionY) {
-    this.imagePositionY = imagePositionY;
-    notifyPropertyChanged("imagePositionY");
-  }
-
-  public float getImagePositionZ() {
-    return imagePositionZ;
-  }
-
-  public void setImagePositionZ(float imagePositionZ) {
-    this.imagePositionZ = imagePositionZ;
-    notifyPropertyChanged("imagePositionZ");
   }
 
   public Drawable getImageSrc() {
@@ -456,8 +285,11 @@ public class WeatherViewModel extends ViewModel {
     notifyPropertyChanged("currentImageWidth");
   }
 
+  private WeatherConfig.UNIT_SYSTEM getUnitSystem() {
+    return tempUnit.substring(1, 2).equals("F") ? WeatherConfig.UNIT_SYSTEM.M : WeatherConfig.UNIT_SYSTEM.I;
+  }
+
   public void changeUnit() {
-    System.out.println(config.unitSystem);
     client = WeatherClientDefault.getInstance();
     config = new WeatherConfig();
     config.unitSystem = getUnitSystem();
@@ -470,7 +302,6 @@ public class WeatherViewModel extends ViewModel {
   }
 
   public void refresh() {
-
     // Get Current Condition
     client.getCurrentCondition(cityId, new WeatherClient.WeatherEventListener() {
       @Override
@@ -488,7 +319,6 @@ public class WeatherViewModel extends ViewModel {
           setTempUnitX(105.0f);
           setTempMaxX(120.0f);
           if (currentWeather.temperature.getTemp() >= 100) {
-            System.out.println("here");
             setTempSize(90.0f);
           }
         }
@@ -502,12 +332,10 @@ public class WeatherViewModel extends ViewModel {
         setSunrise(WeatherUtil.convertDate(currentWeather.location.getSunrise()));
         setSunset(WeatherUtil.convertDate(currentWeather.location.getSunset()));
         setCloud(currentWeather.clouds.getPerc() + "%");
-        setPressure(currentWeather.currentCondition.getPressure() + currentWeather.getUnit().pressureUnit);
         if (currentWeather.rain.getTime() != null && currentWeather.rain.getAmmount() != 0) {
           setRain(currentWeather.rain.getTime() + ":" + currentWeather.rain.getAmmount());
         } else
           setRain("-----");
-        setPressure("" + currentWeather.currentCondition.getPressure() + currentWeather.getUnit().pressureUnit);
       }
 
       @Override

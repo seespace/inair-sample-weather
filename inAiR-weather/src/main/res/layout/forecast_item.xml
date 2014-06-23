@@ -1,45 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<UIViewGroup xmlns:ui="http://schemas.android.com/apk/res-auto"
-    ui:positionX="{ Binding Path:'posX' }"
-    ui:positionY="{ Binding Path:'posY' }"
-    ui:positionZ="800.0" >
+<UIViewGroup
+  xmlns:ui="http://schemas.android.com/apk/res-auto"
+  ui:width="310"
+  ui:height="30">
 
-    <UITextView
-        ui:id="@+id/forecastId"
-        ui:width="100.0"
-        ui:height="10.0"
-        ui:positionX="0.0"
-        ui:positionY="45.0"
-        ui:text="{ Binding Path:'dailyDay' }" />
+  <UITextView
+    ui:height="10.0"
+    ui:id="@+id/forecastId"
+    ui:positionY="40.0"
+    ui:text="{ Binding Path:'dailyDay' }"
+    ui:textSize="15.0"
+    ui:width="150.0"/>
 
-    <UITextView
-        ui:width="100.0"
-        ui:height="10.0"
-        ui:positionX="0.0"
-        ui:positionY="60.0"
-        ui:textSize="12.0"
-        ui:text="{ Binding Path:'dailyDate' }" />
+  <UITextView
+    ui:height="10.0"
+    ui:positionX="0.0"
+    ui:positionY="58.0"
+    ui:text="{ Binding Path:'dailyDate' }"
+    ui:textSize="12.0"
+    ui:width="100.0"/>
 
-    <UIImageView
-        ui:width="16.0"
-        ui:height='16.0'
-        ui:positionX="150.0"
-        ui:positionY="50.0"
-        ui:src="{ Binding Path:'dailyImageSrc' }" />
+  <UIImageView
+    ui:height='16.0'
+    ui:positionX="150.0"
+    ui:positionY="45.0"
+    ui:src="{ Binding Path:'dailyImageSrc' }"
+    ui:width="16.0"/>
 
-    <UITextView
-        ui:width="100.0"
-        ui:height="10.0"
-        ui:positionX="250.0"
-        ui:positionY="50.0"
-        ui:text="{ Binding Path:'dailyTempMax' }" />
+  <UITextView
+    ui:height="10.0"
+    ui:positionX="250.0"
+    ui:positionY="45.0"
+    ui:text="{ Binding Path:'dailyTempMax' }"
+    ui:textSize="15.0"
+    ui:width="100.0"/>
 
-    <UITextView
-        ui:width="100.0"
-        ui:height="10.0"
-        ui:positionX="285.0"
-        ui:positionY="50.0"
-        ui:alpha="0.7"
-        ui:text="{ Binding Path:'dailyTempMin' }" />
+  <UITextView
+    ui:alpha="0.7"
+    ui:height="10.0"
+    ui:positionX="285.0"
+    ui:positionY="45.0"
+    ui:text="{ Binding Path:'dailyTempMin' }"
+    ui:textSize="15.0"
+    ui:width="100.0"/>
 </UIViewGroup>

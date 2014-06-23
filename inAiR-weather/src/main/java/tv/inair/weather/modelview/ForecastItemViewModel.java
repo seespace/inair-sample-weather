@@ -20,8 +20,9 @@ public class ForecastItemViewModel extends ViewModel {
   private float textSize = 25.0f;
   private float textAlpha = 1.0f;
 
+  // Constructor
   public ForecastItemViewModel() {
-    dailyDay = "Default";
+    dailyDay = "ABC";
     dailyDate = "";
     dailyCondition = "";
     dailyTempMax = "";

@@ -9,10 +9,8 @@ import inair.view.UITextView;
  * Created by Synyster on 6/2/14.
  */
 public class ForecastLayout extends IAChildLayout {
-  UITextView forecast;
   @Override
   public void onInitialize(Bundle bundle) {
     setRootContentView(R.layout.forecast_item);
-    forecast = ((UITextView) findUIViewById(R.id.forecastId));
   }
 }

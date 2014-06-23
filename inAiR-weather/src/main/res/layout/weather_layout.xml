@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<UILayeredViewItem xmlns:tools="http://schemas.android.com/tools"
+<UILayeredViewItem
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:ui="http://schemas.android.com/apk/res-auto"
     tools:context="tv.inair.weather.WeatherLayout"
-    ui:positionX="900.0"
-    ui:positionY="200.0"
-    ui:positionZ="800.0"
     ui:title=" { Binding Path='layerTitle' }">
 
     <UIRectView
@@ -13,12 +11,11 @@
         ui:positionX="0"
         ui:positionY="0"
         ui:color="@color/black"
-        ui:alpha="0.5"
-        />
+        ui:alpha="0.5" />
 
     <UIViewGroup
         ui:width="310.0"
-        ui:height="150.0"
+        ui:height="130.0"
         ui:positionX="20.0"
         ui:positionY="80.0">
 
@@ -60,7 +57,8 @@
             ui:height="100.0"
             ui:positionX="0.0"
             ui:positionY="100.0"
-            ui:text="{ Binding Path:'condition' }" />
+            ui:text="{ Binding Path:'condition' }"
+            ui:textSize="15" />
 
         <UIImageView
             ui:width="{ Binding Path:'currentImageWidth' }"
@@ -75,17 +73,11 @@
             ui:positionX="0.0"
             ui:positionY="130.0"
             ui:color="@color/white" />
-        <!--<UIRectView-->
-        <!--ui:width="310.0"-->
-        <!--ui:height="1.0"-->
-        <!--ui:positionX="0.0"-->
-        <!--ui:positionY="120.0"-->
-        <!--ui:color="@color/white" />-->
     </UIViewGroup>
 
     <UIViewGroup
         ui:width="310.0"
-        ui:height="200.0"
+        ui:height="120.0"
         ui:positionX="20.0"
         ui:positionY="200.0">
 
@@ -101,7 +93,8 @@
             ui:height="10.0"
             ui:positionX="25.0"
             ui:positionY="30.0"
-            ui:text="{ Binding Path:'windSpeed' }" />
+            ui:text="{ Binding Path:'windSpeed' }"
+            ui:textSize="15" />
 
         <UIImageView
             ui:width="16.0"
@@ -115,7 +108,8 @@
             ui:height="10.0"
             ui:positionX="190.0"
             ui:positionY="30.0"
-            ui:text="{ Binding Path:'rain' }" />
+            ui:text="{ Binding Path:'rain' }"
+            ui:textSize="15" />
 
         <UIImageView
             ui:width="16.0"
@@ -129,7 +123,8 @@
             ui:height="10.0"
             ui:positionX="25.0"
             ui:positionY="53.0"
-            ui:text="{ Binding Path:'humidity' }" />
+            ui:text="{ Binding Path:'humidity' }"
+            ui:textSize="15" />
 
         <UIImageView
             ui:width="18.0"
@@ -143,7 +138,8 @@
             ui:height="10.0"
             ui:positionX="190.0"
             ui:positionY="53.0"
-            ui:text="{ Binding Path:'sunrise' }" />
+            ui:text="{ Binding Path:'sunrise' }"
+            ui:textSize="15" />
 
         <UIImageView
             ui:width="16.0"
@@ -157,7 +153,8 @@
             ui:height="10.0"
             ui:positionX="25.0"
             ui:positionY="76.0"
-            ui:text="{ Binding Path:'cloud' }" />
+            ui:text="{ Binding Path:'cloud' }"
+            ui:textSize="15" />
 
         <UIImageView
             ui:width="16.0"
@@ -171,7 +168,8 @@
             ui:height="10.0"
             ui:positionX="190.0"
             ui:positionY="76.0"
-            ui:text="{ Binding Path:'sunset' }" />
+            ui:text="{ Binding Path:'sunset' }"
+            ui:textSize="15" />
 
         <UIRectView
             ui:width="310.0"
@@ -183,23 +181,33 @@
 
 
     <UIViewGroup
-        ui:positionX="20.0"
-        ui:positionY="310.0">
+      ui:width="310"
+      ui:positionX="20.0"
+      ui:positionY="310.0">
 
-        <UITextView
-            ui:width="300.0"
-            ui:height="50.0"
-            ui:positionX="00.0"
-            ui:positionY="10.0"
-            ui:textSize="24.0"
-            ui:text="Daily Forecast" />
+      <UITextView
+        ui:width="300.0"
+        ui:height="50.0"
+        ui:positionX="00.0"
+        ui:positionY="10.0"
+        ui:textSize="24.0"
+        ui:text="Daily Forecast" />
 
-        <UIRectView
-            ui:width="310.0"
-            ui:height="1.0"
-            ui:positionX="0.0"
-            ui:positionY="300.0"
-            ui:color="@color/white" />
+      <UIListView
+        ui:id="@+id/forecast_listview"
+        ui:itemsSource="{ Binding Path='obsForecastItems' }"
+        ui:dataTemplate="@layout/forecast_list"
+        ui:width="310"
+        ui:height="300"
+        ui:borderThickness="1"
+        ui:borderColor="@color/white" />
+
+      <UIRectView
+        ui:width="310.0"
+        ui:height="1.0"
+        ui:positionX="0.0"
+        ui:positionY="300.0"
+        ui:color="@color/white" />
 
     </UIViewGroup>
 </UILayeredViewItem>
