@@ -20,10 +20,9 @@
         ui:positionY="80.0">
 
         <UITextView
-            ui:width="150.0"
-            ui:height="10.0"
+            ui:width="150"
             ui:positionX="-5.0"
-            ui:positionY="0.0"
+            ui:positionY="-15.0"
             ui:text="{ Binding Path:'temp' }"
             ui:textSize="{ Binding Path:'tempSize' }" />
 
@@ -31,7 +30,7 @@
             ui:width="200.0"
             ui:height="100.0"
             ui:positionX="{ Binding Path:'tempUnitX' }"
-            ui:positionY="17.0"
+            ui:positionY="5.0"
             ui:text="{ Binding Path:'tempUnit' }"
             ui:textSize="40.0" />
 
@@ -39,7 +38,7 @@
             ui:width="200.0"
             ui:height="100.0"
             ui:positionX="{ Binding Path:'tempMaxX' }"
-            ui:positionY="55.0"
+            ui:positionY="50.0"
             ui:text="{ Binding Path:'tempMax' }"
             ui:textSize="20.0" />
 
@@ -47,7 +46,7 @@
             ui:width="200.0"
             ui:height="100.0"
             ui:positionX="{ Binding Path:'tempMaxX' }"
-            ui:positionY="72.0"
+            ui:positionY="70.0"
             ui:alpha="0.7"
             ui:text="{ Binding Path:'tempMin' }"
             ui:textSize="20.0" />
@@ -179,7 +178,6 @@
             ui:color="@color/white" />
     </UIViewGroup>
 
-
     <UIViewGroup
       ui:width="310"
       ui:positionX="20.0"
@@ -188,19 +186,16 @@
       <UITextView
         ui:width="300.0"
         ui:height="50.0"
-        ui:positionX="00.0"
         ui:positionY="10.0"
         ui:textSize="24.0"
         ui:text="Daily Forecast" />
 
       <UIListView
-        ui:id="@+id/forecast_listview"
+        ui:positionY="20.0"
         ui:itemsSource="{ Binding Path='obsForecastItems' }"
         ui:dataTemplate="@layout/forecast_list"
         ui:width="310"
-        ui:height="300"
-        ui:borderThickness="1"
-        ui:borderColor="@color/white" />
+        ui:height="300"/>
 
       <UIRectView
         ui:width="310.0"

@@ -3,7 +3,7 @@
 <UIViewGroup
   xmlns:ui="http://schemas.android.com/apk/res-auto"
   ui:width="310"
-  ui:height="30">
+  ui:height="35">
 
   <UITextView
     ui:height="10.0"
