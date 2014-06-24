@@ -1,6 +1,5 @@
 package tv.inair.weather.modelview;
 
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -58,12 +57,11 @@ public class WeatherViewModel extends ViewModel {
   private String cloud = "";
   private String rain = "";
   private Drawable imageSrc = null;
-  private BitmapDrawable currentImageSrc;
+  private int currentImageSrc = R.drawable.sun;
 
   // Constructor
   public WeatherViewModel(String cityId) {
     this.cityId = cityId;
-    currentImageSrc = (BitmapDrawable) resources.getDrawable(R.drawable.sun);
 
     // Config weather client & weather config
     client = WeatherClientDefault.getInstance();
@@ -106,11 +104,11 @@ public class WeatherViewModel extends ViewModel {
     notifyPropertyChanged("tempSize");
   }
 
-  public BitmapDrawable getCurrentImageSrc() {
-    return currentImageSrc;
+  public Drawable getCurrentImageSrc() {
+    return resources.getDrawable(currentImageSrc);
   }
 
-  public void setCurrentImageSrc(BitmapDrawable currentImageSrc) {
+  public void setCurrentImageSrc(int currentImageSrc) {
     this.currentImageSrc = currentImageSrc;
     notifyPropertyChanged("currentImageSrc");
   }
@@ -327,7 +325,7 @@ public class WeatherViewModel extends ViewModel {
         setWindSpeed(currentWeather.wind.getSpeed() + currentWeather.getUnit().speedUnit + " " + (int) currentWeather.wind.getDeg() + "°");
         setCurrentImageWidth(100.0f);
         setCurrentImageHeight(100.0f);
-        setCurrentImageSrc((BitmapDrawable) resources.getDrawable(IconMapper.getWeatherResource(currentWeather.currentCondition.getIcon(), currentWeather.currentCondition.getWeatherId())));
+        setCurrentImageSrc(IconMapper.getWeatherResource(currentWeather.currentCondition.getIcon(), currentWeather.currentCondition.getWeatherId()));
         setHumidity(currentWeather.currentCondition.getHumidity() + "%");
         setSunrise(WeatherUtil.convertDate(currentWeather.location.getSunrise()));
         setSunset(WeatherUtil.convertDate(currentWeather.location.getSunset()));
@@ -356,17 +354,12 @@ public class WeatherViewModel extends ViewModel {
         Date d = new Date();
         Calendar gc = new GregorianCalendar();
         gc.setTime(d);
-        float posX = 20.0f;
-        float posY = 270.0f;
         for (int i = 0; i < 6; i++) {
           DayForecast forecast = weatherForecast.getForecast(i);
           gc.add(GregorianCalendar.DAY_OF_MONTH, 1);
-          obsForecastItems.get(i).setPosX(posX);
-          posY += 40.0f;
-          obsForecastItems.get(i).setPosY(posY);
           obsForecastItems.get(i).setDailyDay(sdfDay.format(gc.getTime()));
           obsForecastItems.get(i).setDailyDate(sdfMonth.format(gc.getTime()));
-          obsForecastItems.get(i).setDailyImageSrc((BitmapDrawable) resources.getDrawable(IconMapper.getWeatherResource(forecast.weather.currentCondition.getIcon(), forecast.weather.currentCondition.getWeatherId())));
+          obsForecastItems.get(i).setDailyImageSrc(IconMapper.getWeatherResource(forecast.weather.currentCondition.getIcon(), forecast.weather.currentCondition.getWeatherId()));
           obsForecastItems.get(i).setDailyCondition(forecast.weather.currentCondition.getDescr());
           obsForecastItems.get(i).setDailyTempMax("" + (int) forecast.forecastTemp.max + "°");
           obsForecastItems.get(i).setDailyTempMin("" + (int) forecast.forecastTemp.min + "°");
