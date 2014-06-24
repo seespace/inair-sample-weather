@@ -43,6 +43,7 @@ public class WeatherViewModel extends ViewModel {
   private String condition = "";
   private String temp = "";
   private float tempSize = 100.0f;
+  private float tempY = -15.0f;
   private String tempUnit  = "°C";
   private float tempUnitX = 0.0f;
   private String tempMax = "";
@@ -102,6 +103,15 @@ public class WeatherViewModel extends ViewModel {
   public void setTempSize(float tempSize) {
     this.tempSize = tempSize;
     notifyPropertyChanged("tempSize");
+  }
+
+  public float getTempY() {
+    return tempY;
+  }
+
+  public void setTempY(float tempY) {
+    this.tempY = tempY;
+    notifyPropertyChanged("tempY");
   }
 
   public Drawable getCurrentImageSrc() {
@@ -306,20 +316,27 @@ public class WeatherViewModel extends ViewModel {
       public void onWeatherRetrieved(CurrentWeather currentWeather) {
         setLayerTitle(currentWeather.location.getCity() + ", " + currentWeather.location.getCountry());
         setCondition(currentWeather.currentCondition.getCondition() + "(" + currentWeather.currentCondition.getDescr() + ")");
-        setTemp("" + (int) currentWeather.temperature.getTemp());
         setTempUnit(currentWeather.getUnit().tempUnit);
-        if (currentWeather.temperature.getTemp() < 10) {
-          setTempSize(100.0f);
-          setTempUnitX(50.0f);
-          setTempMaxX(65.0f);
-        } else if (currentWeather.temperature.getTemp() > 10 ) {
-          setTempSize(100.0f);
-          setTempUnitX(105.0f);
-          setTempMaxX(120.0f);
-          if (currentWeather.temperature.getTemp() >= 100) {
-            setTempSize(90.0f);
-          }
+        int temp = (int) currentWeather.temperature.getTemp();
+        float tY = -15.0f;
+        float tSize = 100.0f;
+        float tUnitX = 105.0f;
+        float tMaxX = 120.0f;
+
+        if (temp < 10) {
+          tUnitX = 50.0f;
+          tMaxX = 65.0f;
+        } else if (temp >= 100) {
+          tSize = 70.0f;
+          tY = 5.0f;
         }
+
+        setTemp("" + temp);
+        setTempSize(tSize);
+        setTempY(tY);
+        setTempUnitX(tUnitX);
+        setTempMaxX(tMaxX);
+
         setTempMax("" + currentWeather.temperature.getMaxTemp());
         setTempMin("" + currentWeather.temperature.getMinTemp());
         setWindSpeed(currentWeather.wind.getSpeed() + currentWeather.getUnit().speedUnit + " " + (int) currentWeather.wind.getDeg() + "°");
@@ -338,10 +355,12 @@ public class WeatherViewModel extends ViewModel {
 
       @Override
       public void onWeatherError(WeatherLibException e) {
+        e.printStackTrace();
       }
 
       @Override
       public void onConnectionError(Throwable throwable) {
+        throwable.printStackTrace();
       }
     });
 
@@ -368,10 +387,12 @@ public class WeatherViewModel extends ViewModel {
 
       @Override
       public void onWeatherError(WeatherLibException e) {
+        e.printStackTrace();
       }
 
       @Override
       public void onConnectionError(Throwable throwable) {
+        throwable.printStackTrace();
       }
     });
   }

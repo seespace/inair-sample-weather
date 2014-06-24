@@ -6,3 +6,6 @@
 .name
 *.iml
 /.idea
+
+/gradle
+gradlew*

@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <UILayeredViewItem
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:ui="http://schemas.android.com/apk/res-auto"
-    tools:context="tv.inair.weather.WeatherLayout"
-    ui:title=" { Binding Path='layerTitle' }">
+  xmlns:tools="http://schemas.android.com/tools"
+  xmlns:ui="http://schemas.android.com/apk/res-auto"
+  tools:context="tv.inair.weather.WeatherLayout"
+  ui:title=" { Binding Path='layerTitle' }"
+  >
 
     <UIRectView
-        ui:width="350.0"
-        ui:height="720.0"
-        ui:positionX="0"
-        ui:positionY="0"
+        ui:width="375.0"
+        ui:height="700.0"
         ui:color="@color/black"
         ui:alpha="0.5" />
 
     <UIViewGroup
-        ui:width="310.0"
-        ui:height="130.0"
         ui:positionX="20.0"
         ui:positionY="80.0">
 
         <UITextView
             ui:width="150"
             ui:positionX="-5.0"
-            ui:positionY="-15.0"
+            ui:positionY="{ Binding Path:'tempY' }"
             ui:text="{ Binding Path:'temp' }"
             ui:textSize="{ Binding Path:'tempSize' }" />
 
@@ -75,8 +72,6 @@
     </UIViewGroup>
 
     <UIViewGroup
-        ui:width="310.0"
-        ui:height="120.0"
         ui:positionX="20.0"
         ui:positionY="200.0">
 
@@ -179,7 +174,6 @@
     </UIViewGroup>
 
     <UIViewGroup
-      ui:width="310"
       ui:positionX="20.0"
       ui:positionY="310.0">
 
