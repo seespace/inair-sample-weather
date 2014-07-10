@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<UILayeredNavigationView
+  xmlns:ui="http://schemas.android.com/apk/res-auto"
+  ui:itemsSource="{ Binding Path='weatherViewModels' }"
+  ui:dataTemplate="@layout/layered_dt"
+  />

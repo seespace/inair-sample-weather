@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <UIViewGroup
-  xmlns:ui="http://schemas.android.com/apk/res-auto"
-  ui:width="310"
-  ui:height="35">
+  xmlns:ui="http://schemas.android.com/apk/res-auto">
 
   <UITextView
     ui:height="10.0"

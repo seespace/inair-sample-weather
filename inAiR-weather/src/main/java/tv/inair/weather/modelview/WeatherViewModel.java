@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import inair.collection.ObservableCollection;
+import inair.data.LayeredItemViewData;
 import inair.data.ViewModel;
 import tv.inair.weather.Application;
 import tv.inair.weather.R;
@@ -29,11 +30,10 @@ import tv.inair.weather.util.WeatherUtil;
 /**
  * Created by Synyster on 5/27/14.
  */
-public class WeatherViewModel extends ViewModel {
-
+public class WeatherViewModel extends ViewModel implements LayeredItemViewData {
 
   public ObservableCollection<ForecastItemViewModel> obsForecastItems = new ObservableCollection<ForecastItemViewModel>();
-  private String layerTitle = "";
+  private CharSequence title = "";
   private WeatherClient client;
   private WeatherConfig config;
   private String cityId = "";
@@ -57,7 +57,6 @@ public class WeatherViewModel extends ViewModel {
   private String sunrise = "";
   private String cloud = "";
   private String rain = "";
-  private Drawable imageSrc = null;
   private int currentImageSrc = R.drawable.sun;
 
   // Constructor
@@ -87,13 +86,14 @@ public class WeatherViewModel extends ViewModel {
     refresh();
   }
 
-  public String getLayerTitle() {
-    return layerTitle;
+  @Override
+  public CharSequence getTitle() {
+    return title;
   }
 
-  public void setLayerTitle(String layerTitle) {
-    this.layerTitle = layerTitle;
-    notifyPropertyChanged("layerTitle");
+  public void setTitle(String title) {
+    this.title = title;
+    notifyPropertyChanged("title");
   }
 
   public float getTempSize() {
@@ -249,14 +249,6 @@ public class WeatherViewModel extends ViewModel {
     notifyPropertyChanged("rain");
   }
 
-  public Drawable getImageSrc() {
-    return imageSrc;
-  }
-
-  public void setImageSrc(Drawable imageSrc) {
-    this.imageSrc = imageSrc;
-  }
-
   public Float getTempUnitX() {
     return tempUnitX;
   }
@@ -314,7 +306,7 @@ public class WeatherViewModel extends ViewModel {
     client.getCurrentCondition(cityId, new WeatherClient.WeatherEventListener() {
       @Override
       public void onWeatherRetrieved(CurrentWeather currentWeather) {
-        setLayerTitle(currentWeather.location.getCity() + ", " + currentWeather.location.getCountry());
+        setTitle(currentWeather.location.getCity() + ", " + currentWeather.location.getCountry());
         setCondition(currentWeather.currentCondition.getCondition() + "(" + currentWeather.currentCondition.getDescr() + ")");
         setTempUnit(currentWeather.getUnit().tempUnit);
         int temp = (int) currentWeather.temperature.getTemp();
