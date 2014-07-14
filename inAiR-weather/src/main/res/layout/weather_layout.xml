@@ -183,7 +183,7 @@
       <UIListView
         ui:positionY="20.0"
         ui:itemsSource="{ Binding Path='obsForecastItems' }"
-        ui:dataTemplate="@layout/forecast_dt"
+        ui:itemTemplate="@layout/forecast_dt"
         ui:width="310"
         ui:height="300"/>
 
