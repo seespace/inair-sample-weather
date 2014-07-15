@@ -1,6 +1,5 @@
 package tv.inair.weather.modelview;
 
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -21,6 +20,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import inair.collection.ObservableCollection;
+import inair.data.LayeredItemViewData;
 import inair.data.ViewModel;
 import tv.inair.weather.Application;
 import tv.inair.weather.R;
@@ -30,20 +30,19 @@ import tv.inair.weather.util.WeatherUtil;
 /**
  * Created by Synyster on 5/27/14.
  */
-public class WeatherViewModel extends ViewModel {
-
+public class WeatherViewModel extends ViewModel implements LayeredItemViewData {
 
   public ObservableCollection<ForecastItemViewModel> obsForecastItems = new ObservableCollection<ForecastItemViewModel>();
-  private String layerTitle = "";
+  private CharSequence title = "";
   private WeatherClient client;
   private WeatherConfig config;
   private String cityId = "";
   private float currentImageWidth = 10.0f;
   private float currentImageHeight = 10.0f;
-  private String cityName = "";
   private String condition = "";
   private String temp = "";
   private float tempSize = 100.0f;
+  private float tempY = -15.0f;
   private String tempUnit  = "°C";
   private float tempUnitX = 0.0f;
   private String tempMax = "";
@@ -57,27 +56,11 @@ public class WeatherViewModel extends ViewModel {
   private String sunrise = "";
   private String cloud = "";
   private String rain = "";
-//  private float textAlpha = 1.0f;
-//  private float textWidth = 500.0f;
-//  private float textHeight = 100.0f;
-//  private int textColor = Color.WHITE;
-//  private float textSize = 15.0f;
-//  private float textPositionX = 100.0f;
-//  private float textPositionY = 100.0f;
-//  private float textPositionZ = 100.0f;
-//  private float imageAlpha = 0.2f;
-//  private float imageWidth = 100.0f;
-//  private float imageHeight = 100.0f;
-//  private float imagePositionX = 100.0f;
-//  private float imagePositionY = 100.0f;
-//  private float imagePositionZ = 100.0f;
-  private Drawable imageSrc = null;
-  private BitmapDrawable currentImageSrc;
+  private int currentImageSrc = R.drawable.sun;
 
   // Constructor
   public WeatherViewModel(String cityId) {
     this.cityId = cityId;
-    currentImageSrc = (BitmapDrawable) resources.getDrawable(R.drawable.sun);
 
     // Config weather client & weather config
     client = WeatherClientDefault.getInstance();
@@ -102,13 +85,14 @@ public class WeatherViewModel extends ViewModel {
     refresh();
   }
 
-  public String getLayerTitle() {
-    return layerTitle;
+  @Override
+  public CharSequence getTitle() {
+    return title;
   }
 
-  public void setLayerTitle(String layerTitle) {
-    this.layerTitle = layerTitle;
-    notifyPropertyChanged("layerTitle");
+  public void setTitle(String title) {
+    this.title = title;
+    notifyPropertyChanged("title");
   }
 
   public float getTempSize() {
@@ -120,11 +104,20 @@ public class WeatherViewModel extends ViewModel {
     notifyPropertyChanged("tempSize");
   }
 
-  public BitmapDrawable getCurrentImageSrc() {
-    return currentImageSrc;
+  public float getTempY() {
+    return tempY;
   }
 
-  public void setCurrentImageSrc(BitmapDrawable currentImageSrc) {
+  public void setTempY(float tempY) {
+    this.tempY = tempY;
+    notifyPropertyChanged("tempY");
+  }
+
+  public Drawable getCurrentImageSrc() {
+    return resources.getDrawable(currentImageSrc);
+  }
+
+  public void setCurrentImageSrc(int currentImageSrc) {
     this.currentImageSrc = currentImageSrc;
     notifyPropertyChanged("currentImageSrc");
   }
@@ -145,15 +138,6 @@ public class WeatherViewModel extends ViewModel {
   public void setHumidity(String humidity) {
     this.humidity = humidity;
     notifyPropertyChanged("humidity");
-  }
-
-  public String getCityName() {
-    return cityName;
-  }
-
-  public void setCityName(String cityName) {
-    this.cityName = cityName;
-    notifyPropertyChanged("cityName");
   }
 
   public String getCondition() {
@@ -255,14 +239,6 @@ public class WeatherViewModel extends ViewModel {
     notifyPropertyChanged("rain");
   }
 
-  public Drawable getImageSrc() {
-    return imageSrc;
-  }
-
-  public void setImageSrc(Drawable imageSrc) {
-    this.imageSrc = imageSrc;
-  }
-
   public Float getTempUnitX() {
     return tempUnitX;
   }
@@ -320,28 +296,35 @@ public class WeatherViewModel extends ViewModel {
     client.getCurrentCondition(cityId, new WeatherClient.WeatherEventListener() {
       @Override
       public void onWeatherRetrieved(CurrentWeather currentWeather) {
-        setLayerTitle(currentWeather.location.getCity() + ", " + currentWeather.location.getCountry());
+        setTitle(currentWeather.location.getCity() + ", " + currentWeather.location.getCountry());
         setCondition(currentWeather.currentCondition.getCondition() + "(" + currentWeather.currentCondition.getDescr() + ")");
-        setTemp("" + (int) currentWeather.temperature.getTemp());
         setTempUnit(currentWeather.getUnit().tempUnit);
-        if (currentWeather.temperature.getTemp() < 10) {
-          setTempSize(100.0f);
-          setTempUnitX(50.0f);
-          setTempMaxX(65.0f);
-        } else if (currentWeather.temperature.getTemp() > 10 ) {
-          setTempSize(100.0f);
-          setTempUnitX(105.0f);
-          setTempMaxX(120.0f);
-          if (currentWeather.temperature.getTemp() >= 100) {
-            setTempSize(90.0f);
-          }
+        int temp = (int) currentWeather.temperature.getTemp();
+        float tY = -15.0f;
+        float tSize = 100.0f;
+        float tUnitX = 105.0f;
+        float tMaxX = 120.0f;
+
+        if (temp < 10) {
+          tUnitX = 50.0f;
+          tMaxX = 65.0f;
+        } else if (temp >= 100) {
+          tSize = 70.0f;
+          tY = 5.0f;
         }
+
+        setTemp("" + temp);
+        setTempSize(tSize);
+        setTempY(tY);
+        setTempUnitX(tUnitX);
+        setTempMaxX(tMaxX);
+
         setTempMax("" + currentWeather.temperature.getMaxTemp());
         setTempMin("" + currentWeather.temperature.getMinTemp());
         setWindSpeed(currentWeather.wind.getSpeed() + currentWeather.getUnit().speedUnit + " " + (int) currentWeather.wind.getDeg() + "°");
         setCurrentImageWidth(100.0f);
         setCurrentImageHeight(100.0f);
-        setCurrentImageSrc((BitmapDrawable) resources.getDrawable(IconMapper.getWeatherResource(currentWeather.currentCondition.getIcon(), currentWeather.currentCondition.getWeatherId())));
+        setCurrentImageSrc(IconMapper.getWeatherResource(currentWeather.currentCondition.getIcon(), currentWeather.currentCondition.getWeatherId()));
         setHumidity(currentWeather.currentCondition.getHumidity() + "%");
         setSunrise(WeatherUtil.convertDate(currentWeather.location.getSunrise()));
         setSunset(WeatherUtil.convertDate(currentWeather.location.getSunset()));
@@ -354,10 +337,12 @@ public class WeatherViewModel extends ViewModel {
 
       @Override
       public void onWeatherError(WeatherLibException e) {
+        e.printStackTrace();
       }
 
       @Override
       public void onConnectionError(Throwable throwable) {
+        throwable.printStackTrace();
       }
     });
 
@@ -370,17 +355,12 @@ public class WeatherViewModel extends ViewModel {
         Date d = new Date();
         Calendar gc = new GregorianCalendar();
         gc.setTime(d);
-        float posX = 20.0f;
-        float posY = 270.0f;
         for (int i = 0; i < 6; i++) {
           DayForecast forecast = weatherForecast.getForecast(i);
           gc.add(GregorianCalendar.DAY_OF_MONTH, 1);
-          obsForecastItems.get(i).setPosX(posX);
-          posY += 40.0f;
-          obsForecastItems.get(i).setPosY(posY);
           obsForecastItems.get(i).setDailyDay(sdfDay.format(gc.getTime()));
           obsForecastItems.get(i).setDailyDate(sdfMonth.format(gc.getTime()));
-          obsForecastItems.get(i).setDailyImageSrc((BitmapDrawable) resources.getDrawable(IconMapper.getWeatherResource(forecast.weather.currentCondition.getIcon(), forecast.weather.currentCondition.getWeatherId())));
+          obsForecastItems.get(i).setDailyImageSrc(IconMapper.getWeatherResource(forecast.weather.currentCondition.getIcon(), forecast.weather.currentCondition.getWeatherId()));
           obsForecastItems.get(i).setDailyCondition(forecast.weather.currentCondition.getDescr());
           obsForecastItems.get(i).setDailyTempMax("" + (int) forecast.forecastTemp.max + "°");
           obsForecastItems.get(i).setDailyTempMin("" + (int) forecast.forecastTemp.min + "°");
@@ -389,10 +369,12 @@ public class WeatherViewModel extends ViewModel {
 
       @Override
       public void onWeatherError(WeatherLibException e) {
+        e.printStackTrace();
       }
 
       @Override
       public void onConnectionError(Throwable throwable) {
+        throwable.printStackTrace();
       }
     });
   }

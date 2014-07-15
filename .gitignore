@@ -1,9 +1,11 @@
 .gradle
 /local.properties
 .DS_Store
+/build
 
 .name
 *.iml
 /.idea
 
-/build
+/gradle
+gradlew*

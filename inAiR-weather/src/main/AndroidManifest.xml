@@ -13,7 +13,7 @@
         android:icon="@drawable/ic_weather"
         >
 
-        <activity android:name="tv.inair.weather.RootLayout">
+        <activity android:name=".view.RootLayout">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
