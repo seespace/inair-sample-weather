@@ -31,5 +31,5 @@ repositories {
 
 dependencies {
   compile(name: 'lib-1.3.1', ext: 'aar')
-  compile project(':inAiR')
+  compile(name: 'inAiR', ext: 'aar')
 }
