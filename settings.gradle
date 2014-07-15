@@ -1,1 +1,10 @@
 include ':inAiR-weather'
+
+include ':proto'
+project(':proto').projectDir = new File('../../system/eventcenter/proto')
+
+include ':CoreGraphic'
+project(':CoreGraphic').projectDir = new File('../../system/coregraphic/CoreGraphic')
+
+include ':inAiR'
+project(':inAiR').projectDir = new File('../../system/framework/inAiR')
