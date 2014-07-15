@@ -39,7 +39,6 @@ public class WeatherViewModel extends ViewModel implements LayeredItemViewData {
   private String cityId = "";
   private float currentImageWidth = 10.0f;
   private float currentImageHeight = 10.0f;
-  private String cityName = "";
   private String condition = "";
   private String temp = "";
   private float tempSize = 100.0f;
@@ -139,15 +138,6 @@ public class WeatherViewModel extends ViewModel implements LayeredItemViewData {
   public void setHumidity(String humidity) {
     this.humidity = humidity;
     notifyPropertyChanged("humidity");
-  }
-
-  public String getCityName() {
-    return cityName;
-  }
-
-  public void setCityName(String cityName) {
-    this.cityName = cityName;
-    notifyPropertyChanged("cityName");
   }
 
   public String getCondition() {
